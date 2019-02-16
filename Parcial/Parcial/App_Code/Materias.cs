@@ -40,9 +40,9 @@ public class Materias
         set { teorico = value; }
     }
 
-    private int laboratorio;
+    private string laboratorio;
 
-    public int Laboratorio
+    public string Laboratorio
     {
         get { return laboratorio; }
         set { laboratorio = value; }
@@ -74,8 +74,6 @@ public class Materias
 
     public Materias()
     {
-        //
-        // TODO: Agregar aquí la lógica del constructor
-        //
+        this.UV = 0;
     }
 }

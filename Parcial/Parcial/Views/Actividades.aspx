@@ -23,6 +23,7 @@
     </ul>
     <br /><br />
     <div class="container-fluid">
+       <div class="row">
         <div class="col-5">
             <div class="card border-info">
                 <div class="card-header">Gestion de actividades</div>
@@ -43,11 +44,26 @@
                             <br />
                             <asp:Label ID="lblArchivo" runat="server" Text="Seleccione su rubrica:"></asp:Label>
                             <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control-file"/>
+                            <br />
+                            <asp:Label ID="lblMateria" runat="server" Text="Codigo materia:"></asp:Label>
+                            <asp:TextBox ID="txtMateria" runat="server" CssClass="form-control"></asp:TextBox>
+                            <br />
+                            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click"/>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        <div class="col-7">
+           <div class="card border-dark">
+               <div class="card-header">Materias</div>
+               <div class="card-body" id="table" runat="server">
+                   
+               </div>
+           </div>
+        </div>
+       </div>
     </div>
+    <script src="../HelpersJS/ObtencionDatos.js"></script>
 </body>
 </html>
