@@ -46,7 +46,7 @@
                             <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control-file"/>
                             <br />
                             <asp:Label ID="lblMateria" runat="server" Text="Codigo materia:"></asp:Label>
-                            <asp:TextBox ID="txtMateria" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtMateria" runat="server" CssClass="form-control" Enabled="true"></asp:TextBox>
                             <br />
                             <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click"/>
                         </div>

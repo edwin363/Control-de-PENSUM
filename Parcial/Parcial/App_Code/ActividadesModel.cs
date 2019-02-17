@@ -40,4 +40,22 @@ public class ActividadesModel
         con.Close();
         return lista;
     }
+
+    public int InsertarActividad(Actividades a)
+    {
+        int filas = 0;
+        SqlConnection con = Conexion.ObtenerConexion();
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandText = "INSERT INTO actividades VALUES(@nombre, @teo, @lab, @porce, @rubrica, @idmateria)";
+        cmd.Parameters.AddWithValue("nombre", a.Nombre);
+        cmd.Parameters.AddWithValue("teo", a.Teorico);
+        cmd.Parameters.AddWithValue("lab", a.Laboratorio);
+        cmd.Parameters.AddWithValue("porce", a.Porcentaje);
+        cmd.Parameters.AddWithValue("rubrica", a.RubricaEvaluacion);
+        cmd.Parameters.AddWithValue("idmateria", a.IdMateria);
+        filas = cmd.ExecuteNonQuery();
+        con.Close();
+        return filas;
+    }
 }

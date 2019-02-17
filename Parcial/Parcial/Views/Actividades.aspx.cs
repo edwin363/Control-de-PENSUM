@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,6 +15,7 @@ public partial class Views_Actividades : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Listar();
+        txtMateria.Enabled = false;
     }
 
     public void Listar()
@@ -39,6 +42,13 @@ public partial class Views_Actividades : System.Web.UI.Page
 
     protected void btnAgregar_Click(object sender, EventArgs e)
     {
-
+        if (this.FileUpload1.HasFile)
+        {
+            //string path = HttpContext.Current.Server.MapPath("~/Rubricas");
+            string filname = Path.GetFileName(FileUpload1.FileName);
+            FileUpload1.SaveAs(Server.MapPath("~/Rubricas/") + filname);
+            //this.FileUpload1.SaveAs("C:\\Users\\DELL\\source\\repos\\edwin363\\Control-de-PENSUM\\Parcial\\Parcial\\Rubricas" + FileUpload1.FileName);
+            //Debug.WriteLine(path);
+        }
     }
 }
