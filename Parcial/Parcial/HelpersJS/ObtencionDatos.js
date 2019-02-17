@@ -23,5 +23,7 @@ document.getElementById('table2').addEventListener('click', function (e) {
             inputs[i].value = value
             console.log(inputs[i])
         }
+        const buton = document.getElementById("btnModificar");
+        buton.style.visibility = "visible";
     }
 })

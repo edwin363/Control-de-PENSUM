@@ -16,7 +16,6 @@ public partial class Views_Actividades : System.Web.UI.Page
     {
         Listar();
         listar2();
-        btnModificar.Enabled = false;
     }
 
     public void Listar()
@@ -36,7 +35,7 @@ public partial class Views_Actividades : System.Web.UI.Page
                 "<td>" + m.Ciclo + "</td>" +
                 "<td>" + m.UV + "</td>" +
                 "<td>" + m.Laboratorio + "</td>"+
-                "<td><input id='btnModificar' type='button' class='btn btn-info' value='seleccionar' /></td></tr>";
+                "<td><input id='btnSelect1' type='button' class='btn btn-info' value='seleccionar' /></td></tr>";
         }
         table.InnerHtml += "</table>";
     }
@@ -61,7 +60,7 @@ public partial class Views_Actividades : System.Web.UI.Page
                 "<td>" + v.RubricaEvaluacion + "</td>" +
                 "<td>" + v.Laboratorio + "</td>" +
                 "<td>" + v.Teorico + "</td>" +
-                "<td><input id='btnSeleccionar' type='button' class='btn btn-info' value='seleccionar' /></td></tr>";
+                "<td><input id='btnSelect2' type='button' class='btn btn-info' value='seleccionar' /></td></tr>";
         }
     }
 
@@ -98,5 +97,10 @@ public partial class Views_Actividades : System.Web.UI.Page
     protected void btnCancelar_Click(object sender, EventArgs e)
     {
         limpiar();
+    }
+
+    protected void btnModificar_Click(object sender, EventArgs e)
+    {
+
     }
 }
