@@ -34,10 +34,17 @@
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
                             <br />
                             <asp:Label ID="lblTipoClase" runat="server" Text="Se le asignara a:"></asp:Label>
-                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control">
-                                <asp:ListItem Text="Teoria" Value="0" Selected="True"></asp:ListItem>
-                                <asp:ListItem Text="Laboratorio" Value="1" Selected="False"></asp:ListItem>
-                            </asp:DropDownList>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <asp:CheckBox ID="CheckBox1" runat="server" Text="Teoria" CssClass="form-check" Enabled="true"/>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <asp:CheckBox ID="CheckBox2" runat="server" Text="Laboratorio" CssClass="form-check" Enabled="true"/>
+                                </div>
+                            </div>
+                            <asp:Button ID="btnEnabled" runat="server" Text="cancelar" CssClass="btn btn-warning" OnClientClick="habilitar()"/>
                             <br />
                             <asp:Label ID="lblPorcentaje" runat="server" Text="Agregar porcentaje"></asp:Label>
                             <asp:TextBox ID="txtPorcentaje" runat="server" CssClass="form-control"></asp:TextBox>
@@ -62,8 +69,18 @@
                </div>
            </div>
         </div>
+           <div class="row">
+               <div class="col-10">
+                   <div class="card border-primary">
+                       <div class="card-header">Actividades</div>
+                       <div class="card-body" id="table2" runat="server">
+                       </div>
+                   </div>
+               </div>
+           </div>
        </div>
     </div>
     <script src="../HelpersJS/ObtencionDatos.js"></script>
+    <script src="../HelpersJS/Enableds.js"></script>
 </body>
 </html>

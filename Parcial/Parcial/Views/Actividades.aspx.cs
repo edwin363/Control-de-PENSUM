@@ -15,7 +15,6 @@ public partial class Views_Actividades : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Listar();
-        txtMateria.Enabled = false;
     }
 
     public void Listar()
@@ -40,15 +39,35 @@ public partial class Views_Actividades : System.Web.UI.Page
         table.InnerHtml += "</table>";
     }
 
+    public void listar2()
+    {
+        List<Actividades> lista = am.ListarActividades();
+        table2.InnerHtml = "<table class='table table-bordered' id='table2'>" +
+           "<tr><th>Codigo</th>" +
+           "<th>Nombre</th>" +
+           "<th>Porcentaje</th>" +
+           "<th>Rubrica</th>" +
+           "<th>Codigo materia</th>" +
+           "<th>Laboratorio</th>"+
+           "<th>Teoria</th></tr>";
+    }
+
     protected void btnAgregar_Click(object sender, EventArgs e)
     {
+        Actividades actividades = new Actividades();
         if (this.FileUpload1.HasFile)
         {
-            //string path = HttpContext.Current.Server.MapPath("~/Rubricas");
             string filname = Path.GetFileName(FileUpload1.FileName);
             FileUpload1.SaveAs(Server.MapPath("~/Rubricas/") + filname);
-            //this.FileUpload1.SaveAs("C:\\Users\\DELL\\source\\repos\\edwin363\\Control-de-PENSUM\\Parcial\\Parcial\\Rubricas" + FileUpload1.FileName);
-            //Debug.WriteLine(path);
+            int teo = (CheckBox1.Checked == true) ? 1 : 0;
+            int lab = (CheckBox2.Checked == true) ? 1 : 0;
+            actividades.Nombre = txtNombre.Text;
+            actividades.Teo = teo;
+            actividades.Lab = lab;
+            actividades.Porcentaje = Convert.ToDouble(txtPorcentaje.Text);
+            actividades.RubricaEvaluacion = filname;
+            actividades.IdMateria = txtMateria.Text;
+            am.InsertarActividad(actividades);
         }
     }
 }

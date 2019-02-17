@@ -41,13 +41,41 @@ public class ActividadesModel
         return lista;
     }
 
+    public List<Actividades> ListarActividades()
+    {
+        List<Actividades> lista = new List<Actividades>();
+        SqlConnection con = Conexion.ObtenerConexion();
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandText = "elect Id_Actividad, Nombre, Porcentaje, Rubrica_Evaluacion, Id_Materia," +
+            "case when Laboratorio = 1 then 'SI' when Laboratorio = 0 then 'NO'" +
+            "end as Lab, case when Teorico = 1 then 'SI' when Teorico = 0 then 'NO'" +
+            "end as Teo from actividades";
+        SqlDataReader reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            Actividades a = new Actividades();
+            a.IdActividad = reader.GetInt32(0);
+            a.Nombre = reader.GetString(1);
+            a.Porcentaje = reader.GetDouble(2);
+            a.RubricaEvaluacion = reader.GetString(3);
+            a.IdMateria = reader.GetString(4);
+            a.Laboratorio = reader.GetString(5);
+            a.Teorico = reader.GetString(6);
+            lista.Add(a);
+        }
+        reader.Close();
+        con.Close();
+        return lista;
+    }
+
     public int InsertarActividad(Actividades a)
     {
         int filas = 0;
         SqlConnection con = Conexion.ObtenerConexion();
         con.Open();
         SqlCommand cmd = con.CreateCommand();
-        cmd.CommandText = "INSERT INTO actividades VALUES(@nombre, @teo, @lab, @porce, @rubrica, @idmateria)";
+        cmd.CommandText = "INSERT INTO actividades VALUES (@nombre, @teo, @lab, @porce, @rubrica, @idmateria)";
         cmd.Parameters.AddWithValue("nombre", a.Nombre);
         cmd.Parameters.AddWithValue("teo", a.Teorico);
         cmd.Parameters.AddWithValue("lab", a.Laboratorio);
