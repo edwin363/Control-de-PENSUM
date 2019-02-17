@@ -58,9 +58,9 @@ public class Actividades
     }
 
 
-    private double procentaje;
+    private decimal procentaje;
 
-    public double Porcentaje
+    public decimal Porcentaje
     {
         get { return procentaje; }
         set { procentaje = value; }

@@ -21,7 +21,7 @@
             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
         </li>
     </ul>
-    <br /><br />
+    <br />
     <div class="container-fluid">
        <div class="row">
         <div class="col-5">
@@ -30,6 +30,8 @@
                 <div class="card-body">
                     <form id="form1" runat="server">
                         <div class="form-group">
+                            <asp:TextBox ID="txtid" runat="server"></asp:TextBox>
+                            <br />
                             <asp:Label ID="lblNombre" runat="server" Text="Nombre:"></asp:Label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
                             <br />
@@ -55,12 +57,27 @@
                             <asp:Label ID="lblMateria" runat="server" Text="Codigo materia:"></asp:Label>
                             <asp:TextBox ID="txtMateria" runat="server" CssClass="form-control" Enabled="true"></asp:TextBox>
                             <br />
-                            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click"/>
+                            <div class="row">
+                                <div class="col-3">
+                                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click"/>
+                                </div>
+                                <div class="col-3">
+                                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" OnClick="btnCancelar_Click"/>
+                                </div>
+                                <div class="col-3">
+                                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-warning"/>
+                                </div>
+                                <div class="col-3">
+                                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-info" Enabled="true"/>
+                                </div>
+                            </div>
                         </div>
                     </form>
+                    <br />
                 </div>
             </div>
         </div>
+           <br />
         <div class="col-7">
            <div class="card border-dark">
                <div class="card-header">Materias</div>
@@ -69,16 +86,17 @@
                </div>
            </div>
         </div>
-           <div class="row">
-               <div class="col-10">
-                   <div class="card border-primary">
-                       <div class="card-header">Actividades</div>
-                       <div class="card-body" id="table2" runat="server">
-                       </div>
+       </div>
+        <br />
+        <div class="row">
+            <div class="col-12">
+               <div class="card border-primary">
+                   <div class="card-header">Actividades</div>
+                   <div class="card-body" id="table2" runat="server">
                    </div>
                </div>
            </div>
-       </div>
+        </div>
     </div>
     <script src="../HelpersJS/ObtencionDatos.js"></script>
     <script src="../HelpersJS/Enableds.js"></script>

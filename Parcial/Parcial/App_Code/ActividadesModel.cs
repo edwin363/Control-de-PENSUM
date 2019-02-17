@@ -47,7 +47,7 @@ public class ActividadesModel
         SqlConnection con = Conexion.ObtenerConexion();
         con.Open();
         SqlCommand cmd = con.CreateCommand();
-        cmd.CommandText = "elect Id_Actividad, Nombre, Porcentaje, Rubrica_Evaluacion, Id_Materia," +
+        cmd.CommandText = "select Id_Actividad, Nombre, Porcentaje, Rubrica_Evaluacion, Id_Materia," +
             "case when Laboratorio = 1 then 'SI' when Laboratorio = 0 then 'NO'" +
             "end as Lab, case when Teorico = 1 then 'SI' when Teorico = 0 then 'NO'" +
             "end as Teo from actividades";
@@ -57,7 +57,7 @@ public class ActividadesModel
             Actividades a = new Actividades();
             a.IdActividad = reader.GetInt32(0);
             a.Nombre = reader.GetString(1);
-            a.Porcentaje = reader.GetDouble(2);
+            a.Porcentaje = reader.GetDecimal(2);
             a.RubricaEvaluacion = reader.GetString(3);
             a.IdMateria = reader.GetString(4);
             a.Laboratorio = reader.GetString(5);
@@ -77,10 +77,27 @@ public class ActividadesModel
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandText = "INSERT INTO actividades VALUES (@nombre, @teo, @lab, @porce, @rubrica, @idmateria)";
         cmd.Parameters.AddWithValue("nombre", a.Nombre);
-        cmd.Parameters.AddWithValue("teo", a.Teorico);
-        cmd.Parameters.AddWithValue("lab", a.Laboratorio);
+        cmd.Parameters.AddWithValue("teo", a.Teo);
+        cmd.Parameters.AddWithValue("lab", a.Lab);
         cmd.Parameters.AddWithValue("porce", a.Porcentaje);
         cmd.Parameters.AddWithValue("rubrica", a.RubricaEvaluacion);
+        cmd.Parameters.AddWithValue("idmateria", a.IdMateria);
+        filas = cmd.ExecuteNonQuery();
+        con.Close();
+        return filas;
+    }
+
+    public int ModificarActividad(Actividades a)
+    {
+        int filas = 0;
+        SqlConnection con = Conexion.ObtenerConexion();
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandText = "UPDATE actividades SET Nombre = @nombre, SET Teorico = @teo, SET Laboratorio = @lab, SET Porcentaje = @porce, SET Id_Materia = @cod WHERE Id_Actividad = @id";
+        cmd.Parameters.AddWithValue("nombre", a.Nombre);
+        cmd.Parameters.AddWithValue("teo", a.Teo);
+        cmd.Parameters.AddWithValue("lab", a.Lab);
+        cmd.Parameters.AddWithValue("porce", a.Porcentaje);
         cmd.Parameters.AddWithValue("idmateria", a.IdMateria);
         filas = cmd.ExecuteNonQuery();
         con.Close();

@@ -15,6 +15,8 @@ public partial class Views_Actividades : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Listar();
+        listar2();
+        btnModificar.Enabled = false;
     }
 
     public void Listar()
@@ -46,10 +48,30 @@ public partial class Views_Actividades : System.Web.UI.Page
            "<tr><th>Codigo</th>" +
            "<th>Nombre</th>" +
            "<th>Porcentaje</th>" +
-           "<th>Rubrica</th>" +
            "<th>Codigo materia</th>" +
+           "<th>Rubrica</th>" +
            "<th>Laboratorio</th>"+
            "<th>Teoria</th></tr>";
+        foreach(Actividades v in lista)
+        {
+            table2.InnerHtml += "<tr><td>" + v.IdActividad +
+                "</td><td>" + v.Nombre + "</td>" +
+                "<td>" + v.Porcentaje + "</td>" +
+                 "<td>" + v.IdMateria + "</td>" +
+                "<td>" + v.RubricaEvaluacion + "</td>" +
+                "<td>" + v.Laboratorio + "</td>" +
+                "<td>" + v.Teorico + "</td>" +
+                "<td><input id='btnSeleccionar' type='button' class='btn btn-info' value='seleccionar' /></td></tr>";
+        }
+    }
+
+    public void limpiar()
+    {
+        txtMateria.Text = "";
+        txtNombre.Text = "";
+        txtPorcentaje.Text = "";
+        CheckBox1.Checked = false;
+        CheckBox2.Checked = false;
     }
 
     protected void btnAgregar_Click(object sender, EventArgs e)
@@ -64,10 +86,17 @@ public partial class Views_Actividades : System.Web.UI.Page
             actividades.Nombre = txtNombre.Text;
             actividades.Teo = teo;
             actividades.Lab = lab;
-            actividades.Porcentaje = Convert.ToDouble(txtPorcentaje.Text);
+            actividades.Porcentaje = Convert.ToDecimal(txtPorcentaje.Text);
             actividades.RubricaEvaluacion = filname;
             actividades.IdMateria = txtMateria.Text;
             am.InsertarActividad(actividades);
+            listar2();
+            limpiar();
         }
+    }
+
+    protected void btnCancelar_Click(object sender, EventArgs e)
+    {
+        limpiar();
     }
 }
