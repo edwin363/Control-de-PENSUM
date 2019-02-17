@@ -40,6 +40,15 @@ public class Materias
         set { teorico = value; }
     }
 
+    private int lab;
+
+    public int Lab
+    {
+        get { return lab; }
+        set { lab = value; }
+    }
+
+
     private string laboratorio;
 
     public string Laboratorio
@@ -78,7 +87,7 @@ public class Materias
         this.nombre = "";
         this.ciclo = 0;
         this.teorico = 0;
-        this.laboratorio = 0;
+        this.lab = 0;
         this.uv = 0;
         this.prerequisito = "";
         this.descripcion = "";

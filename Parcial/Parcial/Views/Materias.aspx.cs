@@ -75,7 +75,7 @@ public partial class Views_Materias : System.Web.UI.Page
                 m.Nombre = txtNombre.Text;
                 m.Ciclo = Int32.Parse(txtCiclo.Text);
                 m.Teorico = 1;
-                m.Laboratorio = 0;
+                m.Lab = 0;
                 m.UV = Int32.Parse(txtUV.Text);
                 m.Prerequisito = txtPrerequisito.Text;
                 m.Descripcion = txtDescripcion.Text;
@@ -94,7 +94,7 @@ public partial class Views_Materias : System.Web.UI.Page
                 m.Nombre = txtNombre.Text;
                 m.Ciclo = Int32.Parse(txtCiclo.Text);
                 m.Teorico = 1;
-                m.Laboratorio = 1;
+                m.Lab = 1;
                 m.UV = Int32.Parse(txtUV.Text);
                 m.Prerequisito = txtPrerequisito.Text;
                 m.Descripcion = txtDescripcion.Text;
@@ -115,7 +115,7 @@ public partial class Views_Materias : System.Web.UI.Page
              m.Nombre = txtNombre.Text;
              m.Ciclo = Int32.Parse(txtCiclo.Text);
              m.Teorico = 1;
-             m.Laboratorio = 1;
+             m.Lab = 1;
              m.UV = Int32.Parse(txtUV.Text);
              m.Prerequisito = txtPrerequisito.Text;
              m.Descripcion = txtDescripcion.Text;
@@ -154,7 +154,7 @@ public partial class Views_Materias : System.Web.UI.Page
                 m.Nombre = txtNombre.Text;
                 m.Ciclo = Int32.Parse(txtCiclo.Text);
                 m.Teorico = 1;
-                m.Laboratorio = 0;
+                m.Lab = 0;
                 m.UV = Int32.Parse(txtUV.Text);
                 m.Prerequisito = txtPrerequisito.Text;
                 m.Descripcion = txtDescripcion.Text;
@@ -173,7 +173,7 @@ public partial class Views_Materias : System.Web.UI.Page
                 m.Nombre = txtNombre.Text;
                 m.Ciclo = Int32.Parse(txtCiclo.Text);
                 m.Teorico = 1;
-                m.Laboratorio = 1;
+                m.Lab = 1;
                 m.UV = Int32.Parse(txtUV.Text);
                 m.Prerequisito = txtPrerequisito.Text;
                 m.Descripcion = txtDescripcion.Text;

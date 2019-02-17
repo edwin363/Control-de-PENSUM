@@ -31,7 +31,7 @@ public class MateriaModel
             m.Nombre = reader.GetString(1);
             m.Ciclo = reader.GetInt32(2);
             m.Teorico = reader.GetInt32(3);
-            m.Laboratorio = reader.GetInt32(4);
+            m.Lab = reader.GetInt32(4);
             m.UV = reader.GetInt32(5);
             m.Prerequisito = reader.GetString(6);
             m.Descripcion = reader.GetString(7);

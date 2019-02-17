@@ -93,12 +93,26 @@ public class ActividadesModel
         SqlConnection con = Conexion.ObtenerConexion();
         con.Open();
         SqlCommand cmd = con.CreateCommand();
-        cmd.CommandText = "UPDATE actividades SET Nombre = @nombre, SET Teorico = @teo, SET Laboratorio = @lab, SET Porcentaje = @porce, SET Id_Materia = @cod WHERE Id_Actividad = @id";
+        cmd.CommandText = "UPDATE actividades SET Nombre = @nombre, Teorico = @teo, Laboratorio = @lab, Porcentaje = @porce, Id_Materia = @cod WHERE Id_Actividad = @id";
         cmd.Parameters.AddWithValue("nombre", a.Nombre);
         cmd.Parameters.AddWithValue("teo", a.Teo);
         cmd.Parameters.AddWithValue("lab", a.Lab);
         cmd.Parameters.AddWithValue("porce", a.Porcentaje);
-        cmd.Parameters.AddWithValue("idmateria", a.IdMateria);
+        cmd.Parameters.AddWithValue("cod", a.IdMateria);
+        cmd.Parameters.AddWithValue("id", a.IdActividad);
+        filas = cmd.ExecuteNonQuery();
+        con.Close();
+        return filas;
+    }
+
+    public int EliminarActividad(int cod)
+    {
+        int filas = 0;
+        SqlConnection con = Conexion.ObtenerConexion();
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandText = "DELETE FROM actividades WHERE Id_Actividad = @cod";
+        cmd.Parameters.AddWithValue("cod", cod);
         filas = cmd.ExecuteNonQuery();
         con.Close();
         return filas;
