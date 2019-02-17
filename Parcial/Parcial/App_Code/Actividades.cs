@@ -25,25 +25,42 @@ public class Actividades
         set { nombre = value; }
     }
 
-    private int teorico;
+    private string teorico;
 
-    public int Teorico
+    public string Teorico
     {
         get { return teorico; }
         set { teorico = value; }
     }
 
-    private int laboratorio;
+    private string laboratorio;
 
-    public int Laboratorio
+    public string Laboratorio
     {
         get { return laboratorio; }
         set { laboratorio = value; }
     }
 
-    private double procentaje;
+    private int teo;
 
-    public double Porcentaje
+    public int Teo
+    {
+        get { return teo; }
+        set { teo = value; }
+    }
+
+    private int lab;
+
+    public int Lab
+    {
+        get { return lab; }
+        set { lab = value; }
+    }
+
+
+    private decimal procentaje;
+
+    public decimal Porcentaje
     {
         get { return procentaje; }
         set { procentaje = value; }
@@ -57,9 +74,9 @@ public class Actividades
         set { rubricaEvaluacion = value; }
     }
 
-    private int idMateria;
+    private string idMateria;
 
-    public int IdMateria
+    public string IdMateria
     {
         get { return idMateria; }
         set { idMateria = value; }

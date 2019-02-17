@@ -40,9 +40,9 @@ public class Materias
         set { teorico = value; }
     }
 
-    private int laboratorio;
+    private string laboratorio;
 
-    public int Laboratorio
+    public string Laboratorio
     {
         get { return laboratorio; }
         set { laboratorio = value; }
@@ -82,5 +82,6 @@ public class Materias
         this.uv = 0;
         this.prerequisito = "";
         this.descripcion = "";
+        this.UV = 0;
     }
 }
