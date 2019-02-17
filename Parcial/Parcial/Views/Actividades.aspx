@@ -68,7 +68,7 @@
                                     <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-warning"/>
                                 </div>
                                 <div class="col-3">
-                                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-info" Enabled="true"/>
+                                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-info" Visible="false" OnClick="btnModificar_Click"/>
                                 </div>
                             </div>
                         </div>
