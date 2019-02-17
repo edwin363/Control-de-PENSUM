@@ -74,8 +74,13 @@ public class Materias
 
     public Materias()
     {
-        //
-        // TODO: Agregar aquí la lógica del constructor
-        //
+        this.codMateria = String.Empty;
+        this.nombre = "";
+        this.ciclo = 0;
+        this.teorico = 0;
+        this.laboratorio = 0;
+        this.uv = 0;
+        this.prerequisito = "";
+        this.descripcion = "";
     }
 }
