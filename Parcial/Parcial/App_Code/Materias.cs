@@ -40,6 +40,18 @@ public class Materias
         set { teorico = value; }
     }
 
+<<<<<<< HEAD
+=======
+    private string teoric;
+
+    public string Teoric
+    {
+        get { return teoric; }
+        set { teoric = value; }
+    }
+
+
+>>>>>>> 4baf2fc1eea974a8402cae225d674c6f4ec63399
     private int lab;
 
     public int Lab

@@ -24,3 +24,4 @@ document.getElementById('table').addEventListener('click', function (e) {
         id.value = "Agregar";
     }
 })
+

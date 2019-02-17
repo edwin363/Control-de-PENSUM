@@ -22,7 +22,10 @@ public class MateriaModel
         SqlConnection con = Conexion.ObtenerConexion();
         con.Open();
         SqlCommand cmd = con.CreateCommand();
-        cmd.CommandText = "select * from materias";
+        cmd.CommandText = "select Codigo_Materia, Nombre, Ciclo, Unidades_Valorativas, Prerequisito, Descripcion," +
+            " case when Teorico = 1 then 'Si' when Teorico = 0 then 'No' else 'Ni uno ni otro' end as Teorico, " +
+            "case when Laboratorio = 1 then 'Si' when Laboratorio = 0 then 'No' else 'Ni uno ni otro' end  as Laboratorio " +
+            "from materias";
         SqlDataReader reader = cmd.ExecuteReader();
         while (reader.Read())
         {
@@ -35,6 +38,12 @@ public class MateriaModel
             m.UV = reader.GetInt32(5);
             m.Prerequisito = reader.GetString(6);
             m.Descripcion = reader.GetString(7);
+            m.Ciclo = reader.GetInt32(2);            
+            m.UV = reader.GetInt32(3);
+            m.Prerequisito = reader.GetString(4);
+            m.Descripcion = reader.GetString(5);
+            m.Teoric = reader.GetString(6);
+            m.Laboratorio = reader.GetString(7);
             lista.Add(m);
         }
         reader.Close();
@@ -54,7 +63,7 @@ public class MateriaModel
         cmd.Parameters.AddWithValue("nombre", m.Nombre);
         cmd.Parameters.AddWithValue("ciclo", m.Ciclo);
         cmd.Parameters.AddWithValue("teorico", m.Teorico);
-        cmd.Parameters.AddWithValue("laboratorio", m.Laboratorio);
+        cmd.Parameters.AddWithValue("laboratorio", m.Lab);
         cmd.Parameters.AddWithValue("uv", m.UV);
         cmd.Parameters.AddWithValue("prerequisito", m.Prerequisito);
         cmd.Parameters.AddWithValue("descripcion", m.Descripcion);
@@ -73,7 +82,7 @@ public class MateriaModel
         cmd.Parameters.AddWithValue("nombre", m.Nombre);
         cmd.Parameters.AddWithValue("ciclo", m.Ciclo);
         cmd.Parameters.AddWithValue("teorico", m.Teorico);
-        cmd.Parameters.AddWithValue("laboratorio", m.Laboratorio);
+        cmd.Parameters.AddWithValue("laboratorio", m.Lab);
         cmd.Parameters.AddWithValue("uv", m.UV);
         cmd.Parameters.AddWithValue("prerequisito", m.Prerequisito);
         cmd.Parameters.AddWithValue("descripcion", m.Descripcion);
