@@ -117,4 +117,23 @@ public class ActividadesModel
         con.Close();
         return filas;
     }
+
+    public decimal ObtenerPorcentaje(string codigo)
+    {
+        decimal porce = 0;
+        SqlConnection con = Conexion.ObtenerConexion();
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandText = "select SUM(Porcentaje*100) from actividades where Id_Materia = @codigo";
+        cmd.Parameters.AddWithValue("codigo", codigo);
+        SqlDataReader reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            porce = reader.GetDecimal(0);
+        }
+        reader.Close();
+        con.Close();
+        return porce;
+    }
+
 }

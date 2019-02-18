@@ -71,19 +71,6 @@ public partial class Views_Materias : System.Web.UI.Page
         {
             if (rdbTeorico.Checked == true && rdbLaboratorio.Checked == false)
             {
-<<<<<<< HEAD
-                m.CodMateria = txtCodigo.Text;
-                m.Nombre = txtNombre.Text;
-                m.Ciclo = Int32.Parse(txtCiclo.Text);
-                m.Teorico = 1;
-                m.Lab = 0;
-                m.UV = Int32.Parse(txtUV.Text);
-                m.Prerequisito = txtPrerequisito.Text;
-                m.Descripcion = txtDescripcion.Text;
-                int v = model.InsertarMateria(m);
-                Response.Write(v);
-                if (v != 0)
-=======
                 if (Int32.Parse(txtUV.Text) >= 2 && Int32.Parse(txtUV.Text) <= 4)
                 {
                     if (Int32.Parse(txtCiclo.Text) >= 1 && Int32.Parse(txtCiclo.Text) <= 4)
@@ -111,26 +98,12 @@ public partial class Views_Materias : System.Web.UI.Page
                     }                   
                 }
                 else
->>>>>>> 4baf2fc1eea974a8402cae225d674c6f4ec63399
                 {
                     errores.InnerHtml = "<div class='alert alert-danger' role='alert' >Ingrese UV entre 2 y 4 </div>";
                 }
             }
             else if (rdbTeorico.Checked == true && rdbLaboratorio.Checked == true)
             {
-<<<<<<< HEAD
-                m.CodMateria = txtCodigo.Text;
-                m.Nombre = txtNombre.Text;
-                m.Ciclo = Int32.Parse(txtCiclo.Text);
-                m.Teorico = 1;
-                m.Lab = 1;
-                m.UV = Int32.Parse(txtUV.Text);
-                m.Prerequisito = txtPrerequisito.Text;
-                m.Descripcion = txtDescripcion.Text;
-                int v = model.InsertarMateria(m);
-                Response.Write(v);
-                if (v != 0)
-=======
                 if (Int32.Parse(txtUV.Text) == 4)
                 {
                     if (Int32.Parse(txtCiclo.Text) >= 1 && Int32.Parse(txtCiclo.Text) <= 4)
@@ -158,7 +131,6 @@ public partial class Views_Materias : System.Web.UI.Page
                     }                   
                 }
                 else
->>>>>>> 4baf2fc1eea974a8402cae225d674c6f4ec63399
                 {
                     errores.InnerHtml = "<div class='alert alert-danger' role='alert' >Las UV de una materia con laboratorio son de 4 </div>";
                 }
@@ -209,19 +181,6 @@ public partial class Views_Materias : System.Web.UI.Page
         {
             if (rdbTeorico.Checked == true && rdbLaboratorio.Checked == false)
             {
-<<<<<<< HEAD
-                m.Nombre = txtNombre.Text;
-                m.Ciclo = Int32.Parse(txtCiclo.Text);
-                m.Teorico = 1;
-                m.Lab = 0;
-                m.UV = Int32.Parse(txtUV.Text);
-                m.Prerequisito = txtPrerequisito.Text;
-                m.Descripcion = txtDescripcion.Text;
-                m.CodMateria = txtCodigo.Text;
-                int v = model.ModificarMateria(m);
-                Response.Write(v);
-                if (v != 0)
-=======
                 if (Int32.Parse(txtUV.Text) >= 2 && Int32.Parse(txtUV.Text) <= 4)
                 {
                     if (Int32.Parse(txtCiclo.Text) >= 1 && Int32.Parse(txtCiclo.Text) <= 4)
@@ -249,28 +208,13 @@ public partial class Views_Materias : System.Web.UI.Page
                     }
                 }
                 else
->>>>>>> 4baf2fc1eea974a8402cae225d674c6f4ec63399
                 {
                     errores.InnerHtml = "<div class='alert alert-danger' role='alert' >Ingrese UV entre 2 y 4 </div>";
                 }
             }
             else if (rdbTeorico.Checked == true && rdbLaboratorio.Checked == true)
             {
-<<<<<<< HEAD
-                m.Nombre = txtNombre.Text;
-                m.Ciclo = Int32.Parse(txtCiclo.Text);
-                m.Teorico = 1;
-                m.Lab = 1;
-                m.UV = Int32.Parse(txtUV.Text);
-                m.Prerequisito = txtPrerequisito.Text;
-                m.Descripcion = txtDescripcion.Text;
-                m.CodMateria = txtCodigo.Text;
-                int v = model.ModificarMateria(m);
-                Response.Write(v);
-                if (v != 0)
-=======
                 if (Int32.Parse(txtUV.Text) == 4)
->>>>>>> 4baf2fc1eea974a8402cae225d674c6f4ec63399
                 {
                     if (Int32.Parse(txtCiclo.Text) >= 1 && Int32.Parse(txtCiclo.Text) <= 4)
                     {

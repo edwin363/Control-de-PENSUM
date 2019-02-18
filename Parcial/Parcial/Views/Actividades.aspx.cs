@@ -17,6 +17,18 @@ public partial class Views_Actividades : System.Web.UI.Page
     {
         Listar();
         listar2();
+        txtMateria.Text = Session["Materia"].ToString();
+        decimal valor = am.ObtenerPorcentaje(txtMateria.Text);
+        if(valor < 100)
+        {
+            respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
+        }
+        else
+        {
+            respuesta2.InnerHtml = "<h4 class='text-danger'>El porcentaje ya esta al 100%</h4>";
+            respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
+            btnAgregar.Enabled = false;
+        }
     }
 
     public void Listar()
@@ -27,16 +39,14 @@ public partial class Views_Actividades : System.Web.UI.Page
             "<th>Materia</th>" +
             "<th>Ciclo</th>" +
             "<th>UV</th>" +
-            "<th>Laboratorio</th>"+
-            "<th>Acciones</th></tr>";
+            "<th>Laboratorio</th></tr>";
         foreach (Materias m in lista)
         {
             table.InnerHtml += "<tr><td>" + m.CodMateria +
                 "</td><td>" + m.Nombre + "</td>" +
                 "<td>" + m.Ciclo + "</td>" +
                 "<td>" + m.UV + "</td>" +
-                "<td>" + m.Laboratorio + "</td>"+
-                "<td><input id='btnSelect1' type='button' class='btn btn-info' value='seleccionar' /></td></tr>";
+                "<td>" + m.Laboratorio + "</td></tr>";
         }
         table.InnerHtml += "</table>";
     }
@@ -112,6 +122,18 @@ public partial class Views_Actividades : System.Web.UI.Page
                     listar2();
                     limpiar();
                     MessageSuccess();
+                    txtMateria.Text = Session["Materia"].ToString();
+                    decimal valor = am.ObtenerPorcentaje(txtMateria.Text);
+                    if (valor < 100)
+                    {
+                        respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
+                    }
+                    else
+                    {
+                        respuesta2.InnerHtml = "<h4 class='text-danger'>El porcentaje ya esta al 100%</h4>";
+                        respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
+                        btnAgregar.Enabled = false;
+                    }
                 }
                 else
                 {
@@ -145,9 +167,22 @@ public partial class Views_Actividades : System.Web.UI.Page
             int result = am.ModificarActividad(actividades);
             if (result != 0)
             {
-                MessageSuccess();
                 listar2();
                 limpiar();
+                MessageSuccess();
+                txtMateria.Text = Session["Materia"].ToString();
+                decimal valor = am.ObtenerPorcentaje(txtMateria.Text);
+                if (valor < 100)
+                {
+                    respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
+                }
+                else
+                {
+                    respuesta2.InnerHtml = "<h4 class='text-danger'>El porcentaje ya esta al 100%</h4>";
+                    respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
+                    btnAgregar.Enabled = false;
+                }
+
             }
             else
             {
@@ -165,9 +200,12 @@ public partial class Views_Actividades : System.Web.UI.Page
             int result = am.EliminarActividad(id);
             if(result != 0)
             {
-                MessageSuccess();
                 listar2();
                 limpiar();
+                MessageSuccess();
+                txtMateria.Text = Session["Materia"].ToString();
+                decimal valor = am.ObtenerPorcentaje(txtMateria.Text);
+                respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
             }
         }
         else

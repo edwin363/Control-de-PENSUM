@@ -32,6 +32,8 @@
                             <br />
                             <asp:Label ID="lblNombre" runat="server" Text="Nombre:"></asp:Label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                ErrorMessage="Este campo es requerido" ControlToValidate="txtNombre"></asp:RequiredFieldValidator>
                             <br />
                             <asp:Label ID="lblTipoClase" runat="server" Text="Se le asignara a:"></asp:Label>
                             <div class="input-group mb-3">
@@ -48,16 +50,20 @@
                             <br />
                             <asp:Label ID="lblPorcentaje" runat="server" Text="Agregar porcentaje"></asp:Label>
                             <asp:TextBox ID="txtPorcentaje" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                                ErrorMessage="Este campo es requerido" ControlToValidate="txtPorcentaje"></asp:RequiredFieldValidator>
                             <br />
                             <asp:Label ID="lblArchivo" runat="server" Text="Seleccione su rubrica:"></asp:Label>
                             <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control-file"/>
                             <br />
                             <asp:Label ID="lblMateria" runat="server" Text="Codigo materia:"></asp:Label>
                             <asp:TextBox ID="txtMateria" runat="server" CssClass="form-control" Enabled="true"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                                ErrorMessage="Este campo es requerido" ControlToValidate="txtMateria"></asp:RequiredFieldValidator>
                             <br />
                             <div class="row">
                                 <div class="col-3">
-                                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click"/>
+                                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click" Enabled="true"/>
                                 </div>
                                 <div class="col-3">
                                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-warning" OnClick="btnCancelar_Click"/>
@@ -68,10 +74,21 @@
                                 <div class="col-3">
                                     <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-info" OnClick="btnModificar_Click"/>
                                 </div>
+                                <br />
                             </div>
+                            
                         </div>
                     </form>
                     <br />
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <h4>Porcentaje:</h4>
+                        <div id="respuesta2" runat="server">
+                        </div>
+                        <div id="respuesta" runat="server">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

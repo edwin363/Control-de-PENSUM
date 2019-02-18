@@ -32,12 +32,6 @@ public class MateriaModel
             Materias m = new Materias();
             m.CodMateria  = reader.GetString(0);
             m.Nombre = reader.GetString(1);
-            m.Ciclo = reader.GetInt32(2);
-            m.Teorico = reader.GetInt32(3);
-            m.Lab = reader.GetInt32(4);
-            m.UV = reader.GetInt32(5);
-            m.Prerequisito = reader.GetString(6);
-            m.Descripcion = reader.GetString(7);
             m.Ciclo = reader.GetInt32(2);            
             m.UV = reader.GetInt32(3);
             m.Prerequisito = reader.GetString(4);
