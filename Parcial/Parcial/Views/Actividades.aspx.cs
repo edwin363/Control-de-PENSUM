@@ -104,7 +104,11 @@ public partial class Views_Actividades : System.Web.UI.Page
         }
         else
         {
-            if (this.FileUpload1.HasFile)
+            if (this.FileUpload1.HasFile == false || txtNombre.Text.Equals("") || CheckBox1.Checked || CheckBox2.Checked || txtPorcentaje.Text.Equals("") || txtMateria.Text.Equals(""))
+            {
+                MessageError();
+            }
+            else
             {
                 string filname = Path.GetFileName(FileUpload1.FileName);
                 FileUpload1.SaveAs(Server.MapPath("~/Rubricas/") + filname);
