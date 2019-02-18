@@ -18,7 +18,7 @@ public class Conexion
 
     public static SqlConnection ObtenerConexion()
     {
-        string connectionString = "Data Source=DESKTOP-IS3NLRB;Initial Catalog=Parcial;User ID=sa;Password=123456";
+        string connectionString = "Data Source=DESKTOP-0VM43UK\\DELL;Initial Catalog=Parcial;Integrated Security=True";
         SqlConnection conexion = new SqlConnection(connectionString);
         return conexion;
     }

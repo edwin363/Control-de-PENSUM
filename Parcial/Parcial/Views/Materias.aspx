@@ -16,9 +16,6 @@
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="Materias.aspx" role="tab" aria-controls="home" aria-selected="true">Materias</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="Actividades.aspx" role="tab" aria-controls="profile" aria-selected="false">Actividades</a>
-        </li>
     </ul>
     <br />
     <div class="container-fluid">
