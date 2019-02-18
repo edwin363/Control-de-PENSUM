@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <form id="form1" runat="server">
                         <div class="form-group">
-                            <asp:TextBox ID="txtid" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="txtid" runat="server" ></asp:TextBox>
                             <br />
                             <asp:Label ID="lblNombre" runat="server" Text="Nombre:"></asp:Label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
@@ -63,7 +63,7 @@
                             <br />
                             <div class="row">
                                 <div class="col-3">
-                                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click" Enabled="true"/>
+                                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click" Enabled="true" />
                                 </div>
                                 <div class="col-3">
                                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-warning" OnClick="btnCancelar_Click"/>

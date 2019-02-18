@@ -97,53 +97,69 @@ public partial class Views_Actividades : System.Web.UI.Page
 
     protected void btnAgregar_Click(object sender, EventArgs e)
     {
-        int id = 0;
-        if (int.TryParse(txtid.Text, out id))
+        txtMateria.Text = Session["Materia"].ToString();
+        decimal valor = am.ObtenerPorcentaje(txtMateria.Text);
+        Debug.WriteLine("Tu valor antes de ingresar es de "+valor);
+
+        if (valor <= 100)
         {
-            Debug.WriteLine("Es numero");
-        }
-        else
-        {
-            if (this.FileUpload1.HasFile == false || txtNombre.Text.Equals("") || CheckBox1.Checked || CheckBox2.Checked || txtPorcentaje.Text.Equals("") || txtMateria.Text.Equals(""))
+            valor += (Convert.ToDecimal(txtPorcentaje.Text)*100);
+            if (valor <= 100)
             {
-                MessageError();
-            }
-            else
-            {
-                string filname = Path.GetFileName(FileUpload1.FileName);
-                FileUpload1.SaveAs(Server.MapPath("~/Rubricas/") + filname);
-                int teo = (CheckBox1.Checked == true) ? 1 : 0;
-                int lab = (CheckBox2.Checked == true) ? 1 : 0;
-                actividades.Nombre = txtNombre.Text;
-                actividades.Teo = teo;
-                actividades.Lab = lab;
-                actividades.Porcentaje = Convert.ToDecimal(txtPorcentaje.Text);
-                actividades.RubricaEvaluacion = filname;
-                actividades.IdMateria = txtMateria.Text;
-                int result = am.InsertarActividad(actividades);
-                if (result != 0)
+                respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
+                int id = 0;
+                if (int.TryParse(txtid.Text, out id))
                 {
-                    listar2();
-                    limpiar();
-                    MessageSuccess();
-                    txtMateria.Text = Session["Materia"].ToString();
-                    decimal valor = am.ObtenerPorcentaje(txtMateria.Text);
-                    if (valor < 100)
-                    {
-                        respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
-                    }
-                    else
-                    {
-                        respuesta2.InnerHtml = "<h4 class='text-danger'>El porcentaje ya esta al 100%</h4>";
-                        respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
-                        btnAgregar.Enabled = false;
-                    }
+                    Debug.WriteLine("Es numero");
                 }
                 else
                 {
-                    MessageError();
+                    if (this.FileUpload1.HasFile)
+                    {
+                        if (txtNombre.Text.Equals("") || CheckBox1.Checked || CheckBox2.Checked || txtPorcentaje.Text.Equals("") || txtMateria.Text.Equals(""))
+                        {
+                            string filname = Path.GetFileName(FileUpload1.FileName);
+                            FileUpload1.SaveAs(Server.MapPath("~/Rubricas/") + filname);
+                            int teo = (CheckBox1.Checked == true) ? 1 : 0;
+                            int lab = (CheckBox2.Checked == true) ? 1 : 0;
+                            actividades.Nombre = txtNombre.Text;
+                            actividades.Teo = teo;
+                            actividades.Lab = lab;
+                            actividades.Porcentaje = Convert.ToDecimal(txtPorcentaje.Text);
+                            actividades.RubricaEvaluacion = filname;
+                            actividades.IdMateria = txtMateria.Text;
+                            int result = am.InsertarActividad(actividades);
+                            if (result != 0)
+                            {
+                                listar2();
+                                limpiar();
+                                MessageSuccess();
+
+                            }
+                            else
+                            {
+                                MessageError();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageError();
+                    }
                 }
             }
+            else
+            {
+                respuesta2.InnerHtml = "<h4 class='text-danger'>El porcentaje supera al 100%</h4>";
+                respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
+                btnAgregar.Enabled = true;
+                Debug.WriteLine("Mi nuevo valor supera el 100" + valor);
+            }
+            Debug.WriteLine("Menor que 100");
+        }else{
+            respuesta2.InnerHtml = "<h4 class='text-danger'>El porcentaje supera al 100%</h4>";
+            btnAgregar.Enabled = true;
+            Debug.WriteLine("Supera el 100");
         }
     }
 
@@ -154,45 +170,69 @@ public partial class Views_Actividades : System.Web.UI.Page
 
     protected void btnModificar_Click(object sender, EventArgs e)
     {
-        if (txtid.Text.Equals("") || txtMateria.Text.Equals("") || txtNombre.Text.Equals("") || txtPorcentaje.Text.Equals(""))
+        txtMateria.Text = Session["Materia"].ToString();
+        decimal valor = am.ObtenerPorcentaje(txtMateria.Text);
+        Debug.WriteLine("Tu valor antes de ingresar es de " + valor);
+        if (valor <= 100)
         {
-            MessageError();
-        }
-        else
-        {
-            int teo = (CheckBox1.Checked == true) ? 1 : 0;
-            int lab = (CheckBox2.Checked == true) ? 1 : 0;
-            actividades.IdActividad = Convert.ToInt32(txtid.Text);
-            actividades.Nombre = txtNombre.Text;
-            actividades.Teo = teo;
-            actividades.Lab = lab;
-            actividades.Porcentaje = Convert.ToDecimal(txtPorcentaje.Text);
-            actividades.IdMateria = txtMateria.Text;
-            int result = am.ModificarActividad(actividades);
-            if (result != 0)
+            decimal valor1 = (valor - Convert.ToDecimal(txtPorcentaje.Text));
+            //valor += (Convert.ToDecimal(txtPorcentaje.Text) * 100);
+            if (valor1 <= 100)
             {
-                listar2();
-                limpiar();
-                MessageSuccess();
-                txtMateria.Text = Session["Materia"].ToString();
-                decimal valor = am.ObtenerPorcentaje(txtMateria.Text);
-                if (valor < 100)
+                if (txtid.Text.Equals("") || txtMateria.Text.Equals("") || txtNombre.Text.Equals("") || txtPorcentaje.Text.Equals("") || CheckBox1.Checked == false && CheckBox2.Checked == false)
                 {
-                    respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
+                    MessageError();
                 }
                 else
                 {
-                    respuesta2.InnerHtml = "<h4 class='text-danger'>El porcentaje ya esta al 100%</h4>";
-                    respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
-                    btnAgregar.Enabled = false;
-                }
+                    int teo = (CheckBox1.Checked == true) ? 1 : 0;
+                    int lab = (CheckBox2.Checked == true) ? 1 : 0;
+                    actividades.IdActividad = Convert.ToInt32(txtid.Text);
+                    actividades.Nombre = txtNombre.Text;
+                    actividades.Teo = teo;
+                    actividades.Lab = lab;
+                    actividades.Porcentaje = Convert.ToDecimal(txtPorcentaje.Text);
+                    actividades.IdMateria = txtMateria.Text;
+                    int result = am.ModificarActividad(actividades);
+                    if (result != 0)
+                    {
+                        listar2();
+                        limpiar();
+                        MessageSuccess();
+                        txtMateria.Text = Session["Materia"].ToString();
+                        decimal valor2 = am.ObtenerPorcentaje(txtMateria.Text);
+                        if (valor2 <= 100)
+                        {
+                            respuesta.InnerHtml = "<h4 class='text-danger'> " + valor2 + "% </h4>";
+                        }
+                        else
+                        {
+                            respuesta2.InnerHtml = "<h4 class='text-danger'>El porcentaje ya esta al 100%</h4>";
+                            respuesta.InnerHtml = "<h4 class='text-danger'> " + valor2 + "% </h4>";
+                        }
 
+                    }
+                    else
+                    {
+                        MessageError();
+                    }
+                }
             }
             else
             {
-                MessageError();
+                respuesta2.InnerHtml = "<h4 class='text-danger'>El porcentaje supera al 100%</h4>";
+                respuesta.InnerHtml = "<h4 class='text-danger'> " + valor + "% </h4>";
+                btnAgregar.Enabled = true;
+                Debug.WriteLine("Mi nuevo valor supera el 100" + valor);
             }
+            Debug.WriteLine("Menor que 100");
         }
+        else
+        {
+            respuesta2.InnerHtml = "<h4 class='text-danger'>El porcentaje supera al 100%</h4>";
+            btnAgregar.Enabled = true;
+            Debug.WriteLine("Supera el 100");
+        }       
     }
 
     protected void btnEliminar_Click(object sender, EventArgs e)
