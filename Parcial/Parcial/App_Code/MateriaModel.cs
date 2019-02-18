@@ -16,17 +16,21 @@ public class MateriaModel
         //
     }
 
+    //Metodo para listar las materias 
     public List<Materias> ListarMaterias()
     {
+        //Crean e inician variables, se abre la conexion
         List<Materias> lista = new List<Materias>();
         SqlConnection con = Conexion.ObtenerConexion();
         con.Open();
+        //Crea la consulta y se envian los datos
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandText = "select Codigo_Materia, Nombre, Ciclo, Unidades_Valorativas, Prerequisito, Descripcion," +
             " case when Teorico = 1 then 'Si' when Teorico = 0 then 'No' else 'Ni uno ni otro' end as Teorico, " +
             "case when Laboratorio = 1 then 'Si' when Laboratorio = 0 then 'No' else 'Ni uno ni otro' end  as Laboratorio " +
             "from materias";
         SqlDataReader reader = cmd.ExecuteReader();
+        //Se recorren y se añaden a la lista
         while (reader.Read())
         {
             Materias m = new Materias();
@@ -48,9 +52,11 @@ public class MateriaModel
 
     public int InsertarMateria(Materias m)
     {
+        //Crean e inician variables, se abre la conexion
         int filas = 0;
         SqlConnection con = Conexion.ObtenerConexion();
         con.Open();
+        //Crea la consulta y se envian los datos
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandText = "insert into materias values (@cod, @nombre, @ciclo, @teorico, @laboratorio, @uv, @prerequisito, @descripcion)";
         cmd.Parameters.AddWithValue("cod", m.CodMateria);
@@ -68,9 +74,11 @@ public class MateriaModel
 
     public int ModificarMateria(Materias m)
     {
+        //Crean e inician variables, se abre la conexion
         int filas = 0;
         SqlConnection con = Conexion.ObtenerConexion();
         con.Open();
+        //Crea la consulta y se envian los datos
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandText = "update materias set Nombre=@nombre, Ciclo=@ciclo, Teorico=@teorico, Laboratorio=@laboratorio, Unidades_Valorativas=@uv, Prerequisito=@prerequisito, Descripcion=@descripcion where Codigo_Materia = @cod";
         cmd.Parameters.AddWithValue("nombre", m.Nombre);
@@ -88,9 +96,11 @@ public class MateriaModel
 
     public int EliminarMateria(string cod)
     {
+        //Crean e inician variables, se abre la conexion
         int filas = 0;
         SqlConnection con = Conexion.ObtenerConexion();
         con.Open();
+        //Crea la consulta y se envian los datos
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandText = "delete from materias WHERE Codigo_Materia = @cod";
         cmd.Parameters.AddWithValue("cod", cod);

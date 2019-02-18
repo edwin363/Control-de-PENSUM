@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class Actividades
 {
-
+    //Declaración de campos
     private int idActividad;
 
     public int IdActividad

@@ -18,6 +18,7 @@ public class Conexion
 
     public static SqlConnection ObtenerConexion()
     {
+        //String de conexion 
         string connectionString = "Data Source=DESKTOP-IS3NLRB;Initial Catalog=Parcial;User ID=sa;Password=123456";
         SqlConnection conexion = new SqlConnection(connectionString);
         return conexion;
